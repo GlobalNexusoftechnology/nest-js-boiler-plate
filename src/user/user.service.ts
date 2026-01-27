@@ -46,26 +46,25 @@ export class UserService {
     });
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto) {
-    try {
-      const user = await this.userRepository.findOne({
-        where: {
-          id,
-          deleted: false,
-        },
-      });
-      if (!user) {
-        throw new BadRequestException('User does not exist');
-      }
-      user.modified_on = Math.floor(Date.now() / 1000);
-      await this.userRepository.update(id, updateUserDto);
-      return {
-        message: 'User updated successfully',
-      };
-    } catch (error) {
-      console.log('[Update User]:', error);
-      throw error;
+  async findById(id: string) {
+    return this.userRepository.findOne({ where: { id, deleted: false } });
+  }
+
+  async update(id: string, dto: UpdateUserDto) {
+    const user = await this.findById(id);
+    if (!user) throw new BadRequestException('User does not exist');
+
+    const updateData: any = { ...dto };
+
+    if (dto.skills) {
+      updateData.skills = dto.skills.join(',');
     }
+
+    updateData.modified_on = Math.floor(Date.now() / 1000);
+
+    await this.userRepository.update(id, updateData);
+
+    return { message: 'User updated successfully' };
   }
 
   async remove(id: string) {

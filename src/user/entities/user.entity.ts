@@ -34,4 +34,31 @@ export class Users extends UserBaseModifiedEntity {
 
   @Column({ type: 'boolean', default: false })
   is_verified: boolean;
+
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  profile_photo?: string;
+
+  @Column({ type: 'varchar', length: 100, nullable: true })
+  full_name?: string;
+
+  @Column({ type: 'varchar', length: 100, nullable: true })
+  profession?: string;
+
+  @Column({ type: 'varchar', length: 150, nullable: true })
+  company?: string;
+
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  short_bio?: string;
+
+  @Column({ type: 'text', nullable: true })
+  about?: string;
+
+  @Column({ type: 'simple-array', nullable: true })
+  skills?: string;
+
+  @Column({ type: 'text', nullable: true })
+  experience?: string;
+
+  @Column({ type: 'varchar', length: 150, nullable: true })
+  location?: string;
 }

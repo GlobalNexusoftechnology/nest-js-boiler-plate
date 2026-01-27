@@ -19,7 +19,6 @@ import { ValidationService } from './services/validation-helper.service';
 import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
-import { GoogleStrategy } from './strategies/google.strategy';
 
 @Module({
   imports: [
@@ -44,7 +43,7 @@ import { GoogleStrategy } from './strategies/google.strategy';
     OtpService,
     TwilioService,
     AuthHelperService,
-    GoogleStrategy,
+    // GoogleStrategy,
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,

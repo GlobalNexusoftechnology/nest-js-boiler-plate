@@ -12,6 +12,8 @@ import { PdfController } from './pdf/pdf.controller';
 import { ExcelController } from './excel/excel.controller';
 import { ExcelService } from './excel/excel.service';
 import { NotificationModule } from './notification/notification.module';
+import { PostModule } from './post/post.module';
+import { CloudinaryModule } from './config/cloudinary.module';
 
 @Module({
   imports: [
@@ -29,6 +31,8 @@ import { NotificationModule } from './notification/notification.module';
     UserModule,
     AuthModule,
     NotificationModule,
+    PostModule,
+    CloudinaryModule,
   ],
   controllers: [AppController, PdfController, ExcelController],
   providers: [AppService, PdfService, ExcelService],

@@ -17,20 +17,20 @@ export class Users1739174364069 implements MigrationInterface {
             name: 'email',
             type: 'varchar',
             length: '50',
-            isNullable: true, // Nullable for phone signup
+            isNullable: true,
             isUnique: true,
           },
           {
             name: 'phone_number',
             type: 'varchar',
             length: '15',
-            isNullable: true, // Nullable for Google signup
+            isNullable: true,
             isUnique: true,
           },
           {
             name: 'password',
             type: 'varchar',
-            isNullable: true, // optional for Google signup
+            isNullable: true,
           },
           {
             name: 'username',
@@ -53,13 +53,75 @@ export class Users1739174364069 implements MigrationInterface {
             name: 'auth_provider',
             type: 'enum',
             enum: ['phone', 'google'],
-            default: "'phone'", // default signup is phone
+            default: "'phone'",
           },
           {
             name: 'is_verified',
             type: 'boolean',
             default: false,
           },
+
+          // --------------------------------------
+          // NEW PROFILE FIELDS
+          // --------------------------------------
+
+          {
+            name: 'profile_photo',
+            type: 'varchar',
+            length: '255',
+            isNullable: true,
+          },
+          {
+            name: 'full_name',
+            type: 'varchar',
+            length: '100',
+            isNullable: true,
+          },
+          {
+            name: 'profession',
+            type: 'varchar',
+            length: '100',
+            isNullable: true,
+          },
+          {
+            name: 'company',
+            type: 'varchar',
+            length: '150',
+            isNullable: true,
+          },
+          {
+            name: 'short_bio',
+            type: 'varchar',
+            length: '255',
+            isNullable: true,
+          },
+          {
+            name: 'about',
+            type: 'text',
+            isNullable: true,
+          },
+          {
+            name: 'skills',
+            type: 'text',
+            isNullable: true,
+            // simple-array stored as comma-separated value
+          },
+          {
+            name: 'experience',
+            type: 'text',
+            isNullable: true,
+          },
+          {
+            name: 'location',
+            type: 'varchar',
+            length: '150',
+            isNullable: true,
+          },
+
+          // --------------------------------------
+          // BASE ENTITY FIELDS
+          // --------------------------------------
+
           {
             name: 'created_by',
             type: 'uuid',

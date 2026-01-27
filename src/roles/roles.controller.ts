@@ -20,6 +20,7 @@ import { UpdateRoleDto } from './dto/update-role.dto';
 import { RolesService } from './roles.service';
 import { PermissionKey } from 'src/packages/authorization/permission-key.enum';
 import { Authorize } from 'src/packages/authorization/roles.decorator';
+import { Public } from 'src/public-strategy';
 
 const basePath = 'roles';
 @ApiBearerAuth('authorization')
@@ -28,8 +29,9 @@ const basePath = 'roles';
 export class RolesController {
   constructor(private roleService: RolesService) {}
 
+  @Public()
   @Get()
-  @Authorize([PermissionKey.GetRole])
+  // @Authorize([PermissionKey.GetRole])
   @ApiOperation({ summary: 'Fetch All Roles' })
   @ApiResponse({ status: 200, description: 'Roles Fetched Successfully' })
   async find() {

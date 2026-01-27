@@ -5,10 +5,11 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Enable CORS
-  app.enableCors();
+  app.enableCors({
+    origin: ['http://localhost:3002', 'http://localhost:3000'],
+    credentials: true,
+  });
 
-  // Swagger setup
   const config = new DocumentBuilder()
     .setTitle('NestJS Boilerplate')
     .setDescription('API documentation')
@@ -17,9 +18,9 @@ async function bootstrap() {
       {
         type: 'http',
         scheme: 'bearer',
-        bearerFormat: 'Bearer', // The format should be `Bearer {token}`
+        bearerFormat: 'Bearer',
       },
-      'access-token', // This is the name of the security scheme
+      'access-token',
     )
     .build();
 
